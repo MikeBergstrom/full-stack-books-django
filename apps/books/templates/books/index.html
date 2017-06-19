@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Full Stack Books</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type = "text/css" href="{% static 'books/style.css' %}"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.category}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Add a Book</h1>
+    <form action='/process' method="post">
+        {% csrf_token %}
+        <label>Title:</label>
+        <input type="text" name="title">
+        <label>Category</label>
+        <input type="text" name="category">
+        <label>Author</label>
+        <input type="text" name="author">
+        <input type="submit" value="Submit!">
+</body>
